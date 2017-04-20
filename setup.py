@@ -39,7 +39,7 @@ def include_all_subfiles(*args):
 
         for file in listdir(local_path):
             file_abspath = path.join(local_path, file)
-            if path.isdir(file_abspath):        #do not include sub folders
+            if path.isdir(file_abspath):        # do not include sub folders
                 continue
             file_list.append(path_included + '/' + file)
 
@@ -64,10 +64,10 @@ class PyTest(TestCommand):
 
     def run_tests(self):
         import shlex
-        #import here, cause outside the eggs aren't loaded
+        # import here, cause outside the eggs aren't loaded
         import pytest
         pytest_commands = []
-        try:    #read commandline
+        try:    # read commandline
             pytest_commands = shlex.split(self.pytest_args)
         except AttributeError:  #use defaults
             pytest_commands = self.pytest_args
@@ -98,8 +98,9 @@ setup(
     ],
     package_data={
         '': ['LICENSE', 'README.rst'],
-        'publicAPI':[
-            'cache/prosperAPI.json'    #including key file for installer
+        'publicAPI': [
+            'cache/prosperAPI.json'    # including key file for installer
+            'static/robots.txt'        # Stops search engine scraping
         ]
     },
     install_requires=[
@@ -107,13 +108,13 @@ setup(
         'Flask~=0.12',
         'Flask-RESTful~=0.3.5',
         'flask-script~=2.0.5',
-        'requests~=2.13.0',         #intelpython3 == 2.10.0
-        'pandas==0.18.1',           #intelpython3 == 0.18.1
-        'numpy==1.11.1',            #intelpython3 == 1.11.1
-        'cython==0.24',             #intelpython3 == 0.24
-        'matplotlib~=2.0.0',        #required for building fbprophet (intel==1.5.1)
+        'requests~=2.13.0',         # intelpython3 == 2.10.0
+        'pandas==0.18.1',           # intelpython3 == 0.18.1
+        'numpy==1.11.1',            # intelpython3 == 1.11.1
+        'cython==0.24',             # intelpython3 == 0.24
+        'matplotlib~=2.0.0',        # required for building fbprophet (intel==1.5.1)
         'pystan~=2.14.0',
-        'fbprophet~=0.1.post1',     #order matters: need pystan/cython first
+        'fbprophet~=0.1.post1',     # order matters: need pystan/cython first
         'tinydb~=3.2.2',
         'tinymongo~=0.1.8',
         'ujson~=1.35',

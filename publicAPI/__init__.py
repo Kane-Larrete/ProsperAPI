@@ -9,6 +9,7 @@ import publicAPI.config as config
 import prosper.common.prosper_logging as p_logging
 
 HERE = path.abspath(path.dirname(__file__))
+STATIC = path.join(HERE, 'static')
 
 def create_app(
         settings=None,
@@ -24,7 +25,7 @@ def create_app(
         log_builder (:obj:`prosper_config.ProsperLogger`, optional): logging container
 
     """
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder=STATIC, static_url_path='/CREST')
 
     if settings:
         app.config.update(settings)
